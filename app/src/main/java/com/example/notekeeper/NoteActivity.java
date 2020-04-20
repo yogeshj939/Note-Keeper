@@ -167,12 +167,23 @@ public class NoteActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Method gets called each time the noteActivity is created to prepare menu options.
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.action_next);
+        int lastIndex = DataManager.getInstance().getNotes().size()-1;
+        item.setEnabled(mNotePosition < lastIndex);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
     private void moveNext() {
         saveNoteChanges();
         ++mNotePosition;
         mNote = DataManager.getInstance().getNotes().get(mNotePosition);
         saveOriginalNoteValues();
         displayNote(spinner_courses,mTextNoteTitle,mTextNoteText);
+        //Invalidate Options menu after each time user clicks next
+        invalidateOptionsMenu();
     }
 
     private void sendEmail() {
