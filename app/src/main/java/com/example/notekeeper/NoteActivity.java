@@ -129,6 +129,11 @@ public class NoteActivity extends AppCompatActivity {
         mNote = DataManager.getInstance().getNotes().get(mNotePosition);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     private void createNewNote() {
         DataManager dm = DataManager.getInstance();
         mNotePosition = dm.createNewNote();

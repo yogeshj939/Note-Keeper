@@ -20,8 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NoteListActivity extends AppCompatActivity {
+    private NoteRecyclerAdapter mNoteRecyclerAdapter;
 
-    private ArrayAdapter<NoteInfo> mNotesAdapter;
+    //private ArrayAdapter<NoteInfo> mNotesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,29 +45,35 @@ public class NoteListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mNotesAdapter.notifyDataSetChanged();
+        //mNotesAdapter.notifyDataSetChanged();
+        mNoteRecyclerAdapter.notifyDataSetChanged();
+
     }
 
     private void initializeDisplayContent() {
-        final ListView noteList = findViewById(R.id.note_list);
-
-        List<NoteInfo> noteInfoList = DataManager.getInstance().getNotes();
-
-        mNotesAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, noteInfoList);
-        noteList.setAdapter(mNotesAdapter);
-
-        noteList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(NoteListActivity.this,NoteActivity.class);
+//        final ListView noteList = findViewById(R.id.note_list);
+//
+//        List<NoteInfo> noteInfoList = DataManager.getInstance().getNotes();
+//
+//        mNotesAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, noteInfoList);
+//        noteList.setAdapter(mNotesAdapter);
+//
+//        noteList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(NoteListActivity.this,NoteActivity.class);
 //                NoteInfo note = (NoteInfo) noteList.getItemAtPosition(position);
-                intent.putExtra(NoteActivity.NOTE_POSITION,position);
-                startActivity(intent);
-            }
-        });
-//        final RecyclerView recylclerNotes = findViewById(R.id.list_notes);
-//        final LinearLayoutManager noteLayoutMannager = new LinearLayoutManager(this);
-//        recylclerNotes.setLayoutManager(noteLayoutMannager);
+//                intent.putExtra(NoteActivity.NOTE_POSITION,position);
+//                startActivity(intent);
+//            }
+//        });
+        final RecyclerView recyclerNotes = findViewById(R.id.list_notes);
+        final LinearLayoutManager noteLayoutManager = new LinearLayoutManager(this);
+        recyclerNotes.setLayoutManager(noteLayoutManager);
+
+        List<NoteInfo> noteList = DataManager.getInstance().getNotes();
+        mNoteRecyclerAdapter = new NoteRecyclerAdapter(this,noteList);
+        recyclerNotes.setAdapter(mNoteRecyclerAdapter);
     }
 
 }
