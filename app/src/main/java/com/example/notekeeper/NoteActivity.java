@@ -160,9 +160,19 @@ public class NoteActivity extends AppCompatActivity {
         } else if(id == R.id.action_cancel){
             mIsCancelling = true;
             finish();
+        } else if(id == R.id.action_next){
+            moveNext();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void moveNext() {
+        saveNoteChanges();
+        ++mNotePosition;
+        mNote = DataManager.getInstance().getNotes().get(mNotePosition);
+        saveOriginalNoteValues();
+        displayNote(spinner_courses,mTextNoteTitle,mTextNoteText);
     }
 
     private void sendEmail() {
