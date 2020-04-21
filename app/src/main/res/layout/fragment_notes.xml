@@ -7,7 +7,7 @@
     tools:context=".ui.notes.NotesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/note_list_items"
+        android:id="@+id/course_list_items"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"

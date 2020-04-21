@@ -62,7 +62,7 @@ public class NoteListActivity extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
-        final RecyclerView recyclerNotes = findViewById(R.id.note_list_items);
+        final RecyclerView recyclerNotes = findViewById(R.id.course_list_items);
         final LinearLayoutManager noteLayoutManager = new LinearLayoutManager(this);
         recyclerNotes.setLayoutManager(noteLayoutManager);
 

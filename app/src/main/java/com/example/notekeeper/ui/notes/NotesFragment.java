@@ -31,14 +31,13 @@ public class NotesFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        //mNotesAdapter.notifyDataSetChanged();
         mNoteRecyclerAdapter.notifyDataSetChanged();
 
     }
 
     private void initializeDisplayContent(View root) {
 
-        final RecyclerView recyclerNotes = root.findViewById(R.id.note_list_items);
+        final RecyclerView recyclerNotes = root.findViewById(R.id.course_list_items);
         final LinearLayoutManager noteLayoutManager = new LinearLayoutManager(getActivity());
         recyclerNotes.setLayoutManager(noteLayoutManager);
 
